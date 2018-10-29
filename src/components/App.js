@@ -19,6 +19,7 @@ class App extends React.Component {
 
   componentDidMount(){
     const { store } = this.props;
+    console.log("subscribe")
     store.subscribe( () => {
       this.updateFromStore();
     });
@@ -26,8 +27,9 @@ class App extends React.Component {
 
   updateFromStore(){
     const { store } = this.props;
-
+    
     const reduxState = store.getState();
+    console.log("get updated state")
 
     this.setState({
       selectedButton: reduxState.selectButton.selectedButton,
@@ -35,6 +37,7 @@ class App extends React.Component {
       countryListOpen: reduxState.country.countryListOpen,
       countries: reduxState.countriesVisited.countries
     });
+    
   }
 
   render(){

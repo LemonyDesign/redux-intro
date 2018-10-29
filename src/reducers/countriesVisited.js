@@ -4,11 +4,10 @@ function countriesVisited(state = {
   switch(action.type){
     case 'ADD_COUNTRY':
       
-    const countriesUpdated = { 
-        countries: state.countries.concat(action.country)
+    const countriesUpdated = state.countries.concat(action.country) 
+    return { 
+        countries: countriesUpdated
       };
-      
-      return countriesUpdated;
 
     default:
       return state;

@@ -32,15 +32,16 @@ function CountrySelector({ countryListOpen, selectedCountry, dispatch}){
   }
  
   function handleSubmit(event){
+    console.log("3. dispatch");
     event.preventDefault();
-    // if (selectedCountry === "") {
-    //   alert('Please select a country')
-    // } else {
+    if (selectedCountry === "") {
+      alert('Please select a country')
+    } else {
       dispatch({
         type: 'ADD_COUNTRY',
         country: selectedCountry
       });
-    // }
+    }
   }
 
   const listClasses = cx('country-input__list',  {
@@ -56,13 +57,14 @@ function CountrySelector({ countryListOpen, selectedCountry, dispatch}){
         onFocus={handleFocus}
         onBlur={handleBlur}
       />
+      <button type="submit">Submit</button>
+      
       <div className={listClasses}>
         <ul>
           {countries.map( country => {
             return <li key={country} onMouseDown={() => selectCountry(country)}>{country}</li>
           })}
         </ul>
-        <button type="submit">Submit</button>
       </div>
     </form>
   );
