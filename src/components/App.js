@@ -1,6 +1,7 @@
 import React from 'react';
 import VotingButtons from './VotingButtons';
 import CountrySelector from './CountrySelector';
+import CountriesVisited from './CountriesVisited';
 
 class App extends React.Component {
   constructor(props){
@@ -11,7 +12,8 @@ class App extends React.Component {
     this.state = {
       selectedButton: reduxState.selectButton.selectedButton,
       selectedCountry: reduxState.country.selectedCountry,
-      countryListOpen: reduxState.country.countryListOpen
+      countryListOpen: reduxState.country.countryListOpen,
+      countries: reduxState.countriesVisited.countries
     }
   }
 
@@ -30,7 +32,8 @@ class App extends React.Component {
     this.setState({
       selectedButton: reduxState.selectButton.selectedButton,
       selectedCountry: reduxState.country.selectedCountry,
-      countryListOpen: reduxState.country.countryListOpen
+      countryListOpen: reduxState.country.countryListOpen,
+      countries: reduxState.countriesVisited.countries
     });
   }
 
@@ -45,6 +48,9 @@ class App extends React.Component {
           selectedCountry={this.state.selectedCountry}
           countryListOpen={this.state.countryListOpen}
           dispatch={this.props.store.dispatch}
+        />
+        <CountriesVisited
+          countries={this.state.countries}
         />
       </div>
     )

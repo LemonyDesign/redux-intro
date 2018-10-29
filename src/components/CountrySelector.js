@@ -30,13 +30,25 @@ function CountrySelector({ countryListOpen, selectedCountry, dispatch}){
       countryListOpen: false
     });
   }
+ 
+  function handleSubmit(event){
+    event.preventDefault();
+    // if (selectedCountry === "") {
+    //   alert('Please select a country')
+    // } else {
+      dispatch({
+        type: 'ADD_COUNTRY',
+        country: selectedCountry
+      });
+    // }
+  }
 
   const listClasses = cx('country-input__list',  {
     'country-input__list--visible': countryListOpen
   });
 
   return (
-    <div className="country-input">
+    <form className="country-input" onSubmit={handleSubmit}>
       <input
         type="text"
         className="country-input__field"
@@ -50,8 +62,9 @@ function CountrySelector({ countryListOpen, selectedCountry, dispatch}){
             return <li key={country} onMouseDown={() => selectCountry(country)}>{country}</li>
           })}
         </ul>
+        <button type="submit">Submit</button>
       </div>
-    </div>
+    </form>
   );
 }
 
