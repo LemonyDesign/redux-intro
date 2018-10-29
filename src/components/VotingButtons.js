@@ -5,10 +5,18 @@ const buttons = ['Camel', 'Duck', 'Donut', 'Potato', 'Mash potato'];
 
 function VotingButtons({selectedButton, dispatch}){
   function handleClick(button){
+    console.log("3. Dispatch new button select action", button)
     dispatch({
       type: 'SELECT_BUTTON',
       selectedButton: button
     })
+  }
+  function clearClick(event){
+    event.preventDefault();
+    dispatch({
+      type: 'RESET_BUTTON'
+    })
+
   }
 
   return (
@@ -25,6 +33,7 @@ function VotingButtons({selectedButton, dispatch}){
           >{button}</button>
         );
       })}
+<a href="#" onClick={clearClick}>Clear</a>
     </div>
   );
 }
