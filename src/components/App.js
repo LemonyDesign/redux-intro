@@ -54,6 +54,7 @@ class App extends React.Component {
         />
         <CountriesVisited
           countries={this.state.countries}
+          dispatch={this.props.store.dispatch}
         />
       </div>
     )
