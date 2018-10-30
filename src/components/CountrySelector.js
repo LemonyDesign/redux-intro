@@ -33,11 +33,14 @@ function CountrySelector({ countryListOpen, selectedCountry, dispatch}){
  
   function handleSubmit(event){
     event.preventDefault();
-    selectedCountry === "" ? alert('Please select a country') : 
+    if (selectedCountry) {
       dispatch({
         type: 'ADD_COUNTRY',
         country: selectedCountry
       });
+    } else {
+      alert('Please select a country') 
+    }
     }
 
   const listClasses = cx('country-input__list',  {
@@ -54,7 +57,6 @@ function CountrySelector({ countryListOpen, selectedCountry, dispatch}){
         onBlur={handleBlur}
       />
       <button type="submit">Submit</button>
-      
       <div className={listClasses}>
         <ul>
           {countries.map( country => {
