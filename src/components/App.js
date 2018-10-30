@@ -19,7 +19,6 @@ class App extends React.Component {
 
   componentDidMount(){
     const { store } = this.props;
-    console.log("subscribe")
     store.subscribe( () => {
       this.updateFromStore();
     });
@@ -29,15 +28,14 @@ class App extends React.Component {
     const { store } = this.props;
     
     const reduxState = store.getState();
-    console.log("get updated state")
-
+    
     this.setState({
       selectedButton: reduxState.selectButton.selectedButton,
       selectedCountry: reduxState.country.selectedCountry,
       countryListOpen: reduxState.country.countryListOpen,
       countries: reduxState.countriesVisited.countries
     });
-    
+    console.log("Add/delete from visited:" + reduxState.countriesVisited.countries)
   }
 
   render(){

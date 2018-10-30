@@ -32,17 +32,13 @@ function CountrySelector({ countryListOpen, selectedCountry, dispatch}){
   }
  
   function handleSubmit(event){
-    console.log("3. dispatch");
     event.preventDefault();
-    if (selectedCountry === "") {
-      alert('Please select a country')
-    } else {
+    selectedCountry === "" ? alert('Please select a country') : 
       dispatch({
         type: 'ADD_COUNTRY',
         country: selectedCountry
       });
     }
-  }
 
   const listClasses = cx('country-input__list',  {
     'country-input__list--visible': countryListOpen
