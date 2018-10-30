@@ -21,3 +21,18 @@ function country(state = {
 }
 
 export default country;
+
+// const mockAction = {
+//   type: "SET_COUNTRY_LIST_OPEN",
+//   selectedCountry: "Germany"
+// }
+
+// const expectedState = {
+//   selectedCountry: 'Germany',
+//   countryListOpen: true
+// }
+
+// const expectedState = {
+//   selectedCountry: 'Germany',
+//   countryListOpen: false
+// }

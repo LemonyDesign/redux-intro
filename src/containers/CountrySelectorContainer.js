@@ -1,9 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import CountrySelector from '../components/CountrySelector';
+import React from "react";
+import PropTypes from "prop-types";
+import CountrySelector from "../components/CountrySelector";
+import {
+  setSelectedCountry,
+  setCountryListFalse,
+  setCountryListTrue
+} from "../actions";
 
 class CountrySelectorContainer extends React.Component {
-  constructor(props, context){
+  constructor(props, context) {
     super(props, context);
 
     const reduxState = this.context.store.getState();
@@ -11,21 +16,21 @@ class CountrySelectorContainer extends React.Component {
     this.state = {
       selectedCountry: reduxState.country.selectedCountry,
       countryListOpen: reduxState.country.countryListOpen
-    }
+    };
 
     this.selectCountry = this.selectCountry.bind(this);
     this.handleFocus = this.handleFocus.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     const { store } = this.context;
-    store.subscribe( () => {
+    store.subscribe(() => {
       this.updateFromStore();
     });
   }
 
-  updateFromStore(){
+  updateFromStore() {
     const { store } = this.context;
 
     const reduxState = store.getState();
@@ -36,33 +41,23 @@ class CountrySelectorContainer extends React.Component {
     });
   }
 
-  selectCountry(country){
-    this.context.store.dispatch({
-      type: 'SET_SELECTED_COUNTRY',
-      selectedCountry: country
-    });
+  selectCountry(country) {
+    this.context.store.dispatch(setSelectedCountry(country));
 
-    this.context.store.dispatch({
-      type: 'SET_COUNTRY_LIST_OPEN',
-      countryListOpen: false
-    });
+    this.context.store.dispatch(setCountryListFalse());
   }
 
-  handleFocus(event){
-    this.context.store.dispatch({
-      type: 'SET_COUNTRY_LIST_OPEN',
-      countryListOpen: true
-    });
+  handleFocus(event) {
+    this.context.store.dispatch(setCountryListTrue());
   }
 
-  handleBlur(event){
-    this.context.store.dispatch({
-      type: 'SET_COUNTRY_LIST_OPEN',
-      countryListOpen: false
-    });
+  handleBlur(event) {
+    this.context.store.dispatch(
+      setCountryListFalse()
+    );
   }
 
-  render(){
+  render() {
     return (
       <CountrySelector
         selectedCountry={this.state.selectedCountry}
